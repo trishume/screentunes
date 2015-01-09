@@ -7,7 +7,7 @@ music through the screen using a web page.
 I found out about this effect from the Hacker News comments on a page that was about a completely different bar spacing effect
 but produced sound out of some monitors (including my external Samsung LCD).
 [Some commenters](https://news.ycombinator.com/item?id=8856930) produced theories including that this is caused by
-the expansion and contraction of capacitors in the display as the screen scans down and the black pixels take a different
+the expansion and contraction of capacitors/inductors in the display as the screen scans down and the black pixels take a different
 amount of power than the white pixels. This theory suggests that varying the width of the bars would change the pitch,
 which indeed does happen.
 
