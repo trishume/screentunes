@@ -6,6 +6,8 @@
   var minimum = 0;
   var maximum = 0;
   var stage = 0;
+  var baseFreq = 0;                                                             // frequency, NOT bar height
+  var music = true;
 
   var AnimationFrame = (function() {
     var FPS = 16.6666666667; // 1000 / 60 = Frames Per Second
@@ -61,13 +63,27 @@
 
   function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var magic = 5 + (Math.sin(t / 2000)+1)*7;
+    var magic = (maximum - minimum) * (Math.sin(t / 2000))/2 + (maximum + minimum)/2;
     bars(magic, magic);
+  }
+  
+  function toneGen (pitch) {
+    return baseFreq * Math.pow(2, -pitch/12);
   }
   
   function play() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var pitch = (maximum - minimum) * (Math.sin(t / 2000))/2 + (maximum + minimum)/2;
+    var pitch;
+    var rel = t % 3000;
+    if(rel < 1000) {
+      pitch = toneGen(0);
+    } else if(rel < 2000) {
+      pitch = toneGen(4);
+    } else if(rel < 3000) {
+      pitch = toneGen(7);
+    } else {
+      pitch = toneGen(0);
+    }
     note(pitch);
   }
   
@@ -84,18 +100,19 @@
   }
 
   function frame(timestamp) {
-    if (start === null) start = timestamp;
+    if (start === null && stage == 2) start = timestamp;
     t = timestamp - start;
     //render();
     if(stage == 0) {
       setMin();
     } else if (stage == 1) {
-      $("#tune1").hide();
-      $("#tune2").show();
       setMax();
     } else {
-      $("#tune2").hide();
-      play();
+      if($("#music").prop("checked")) {
+        play();
+      } else {
+        render();
+      }
     }
     AnimationFrame.request(frame);
   }
@@ -105,8 +122,19 @@
     ctx = canvas.getContext("2d");
     $(window).bind("resize", resize);
     $("#tune2").hide();
-    $("#is_set1").click(function() { stage++;});
-    $("#is_set2").click(function() { stage++;});
+    $("#is_set1").click(function() {
+      stage++;
+      $("#tune1").hide();
+      $("#tune2").show();
+    });
+    $("#is_set2").click(function() {
+      stage++;
+      $("#tune2").hide();
+      baseFreq = (minimum + maximum) / 2.82842712475;                              // 2*sqrt(2)
+      if(2 * baseFreq > maximum) {
+        alert("Can't play music, range of tones too small");
+      }
+    });
     resize();
     AnimationFrame.request(frame);
   });
