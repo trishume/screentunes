@@ -21,8 +21,8 @@ input[type=range] {
     font-family: sans-serif;
 }
 
-.bubble + .bubble {
-    margin-top: 10px;
+.bubble + .bubble + .bubble {
+    top: 20px;
 }
 
 p {
