@@ -11,6 +11,8 @@ the expansion and contraction of capacitors in the display as the screen scans d
 amount of power than the white pixels. This theory suggests that varying the width of the bars would change the pitch,
 which indeed does happen.
 
+Zooming the page out and in also causes the tone to increase and decrease respectivly.
+
 This is mainly intended as an experiment out of curiosity and geekery, it has no practical use.
 
 ## Technique
