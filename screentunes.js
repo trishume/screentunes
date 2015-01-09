@@ -4,6 +4,62 @@
   var start = null;
   var t = null;
 
+  var tones = {
+    REST: 0,
+    GbelowC: 196,
+    A: 220,
+    Asharp: 233,
+    B: 247,
+    C: 262,
+    Csharp: 277,
+    D: 294,
+    Dsharp: 311,
+    E: 330,
+    F: 349,
+    Fsharp: 370,
+    G: 392,
+    Gsharp: 415
+  };
+
+  var whole = 1000;
+
+  var durations = {
+    whole: whole,
+    half: whole / 2,
+    quarter: whole / 4
+  };
+
+  var songs = {
+    mary: [
+      [tones.E, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.C, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.E, durations.quarter],
+      [tones.E, durations.quarter],
+      [tones.E, durations.half],
+      [tones.D, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.D, durations.half],
+      [tones.E, durations.quarter],
+      [tones.G, durations.quarter],
+      [tones.G, durations.half],
+      [tones.E, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.C, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.E, durations.quarter],
+      [tones.E, durations.quarter],
+      [tones.E, durations.quarter],
+      [tones.E, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.E, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.C, durations.whole]
+    ]
+  };
+
   var AnimationFrame = (function() {
     var FPS = 16.6666666667; // 1000 / 60 = Frames Per Second
     var RAF = window.requestAnimationFrame
@@ -50,9 +106,23 @@
     }
   }
 
+  var incrTime = 0;
+  var noteCount = 0;
+  var song = songs.mary;
   function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var magic = 5 + (Math.sin(t / 2000)+1)*7;
+
+    var note = song[noteCount];
+    if (t - incrTime > note[1]) {
+      incrTime += note[1];
+      noteCount++;
+    }
+
+    note = song[noteCount];
+    var magic = note[0] * -.1 + 33 * 2;
+
+    //var magic = 5 + (Math.sin(t / 2000)+1)*7;
+
     bars(magic, magic);
   }
 
