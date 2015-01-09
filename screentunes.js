@@ -26,7 +26,9 @@
   var durations = {
     whole: whole,
     half: whole / 2,
-    quarter: whole / 4
+    quarter: whole / 4,
+    eighth: whole / 8,
+    sixteenth: whole / 16
   };
 
   var songs = {
@@ -57,6 +59,44 @@
       [tones.E, durations.quarter],
       [tones.D, durations.quarter],
       [tones.C, durations.whole]
+    ],
+    scale: [
+      [tones.A, durations.quarter],
+      [tones.B, durations.quarter],
+      [tones.C, durations.quarter],
+      [tones.D, durations.quarter],
+      [tones.E, durations.quarter],
+      [tones.F, durations.quarter],
+      [tones.G, durations.quarter]
+    ],
+    nyan: [
+      // measure 1
+      [tones.Fsharp, durations.eighth],
+      [tones.Gsharp, durations.eighth],
+      [tones.D, durations.sixteenth],
+      [tones.Dsharp, durations.eighth],
+      [tones.Csharp, durations.sixteenth],
+      [tones.D, durations.sixteenth],
+      [tones.Csharp, durations.sixteenth],
+      [tones.B, durations.eighth],
+      [tones.B, durations.eighth],
+      [tones.Csharp, durations.eighth],
+      // measure 2
+      [tones.D, durations.eighth],
+      [tones.D, durations.sixteenth],
+      [tones.Csharp, durations.sixteenth],
+      [tones.B, durations.sixteenth],
+      [tones.Csharp, durations.sixteenth],
+      [tones.Dsharp, durations.sixteenth],
+      [tones.Fsharp, durations.sixteenth],
+      [tones.Gsharp, durations.sixteenth],
+      [tones.Dsharp, durations.sixteenth],
+      [tones.Fsharp, durations.sixteenth],
+      [tones.Csharp, durations.sixteenth],
+      [tones.Dsharp, durations.sixteenth],
+      [tones.B, durations.sixteenth],
+      [tones.Csharp, durations.sixteenth],
+      [tones.B, durations.sixteenth]
     ]
   };
 
@@ -108,7 +148,7 @@
 
   var incrTime = 0;
   var noteCount = 0;
-  var song = songs.mary;
+  var song = songs.nyan;
   var play = true;
   function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -116,7 +156,7 @@
     if (!play) {return;}
 
     var lastNote = song[noteCount];
-    if (t - incrTime > lastNote[1]) {
+    if (t/2 - incrTime > lastNote[1]) {
       incrTime += lastNote[1];
       noteCount++;
       if (noteCount == song.length) {
@@ -126,7 +166,7 @@
     }
 
     var note = song[noteCount];
-    var magic = -note[0] * .1 + 56;
+    var magic = -note[0] * .105 + 60;
 
     //var magic = 5 + (Math.sin(t / 2000)+1)*7;
 
