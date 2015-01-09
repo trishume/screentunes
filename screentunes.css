@@ -6,16 +6,23 @@ canvas {
     position: absolute; top: 0px; left: 0px; z-index: -1;
 }
 
-#info {
-    position: absolute;
+input[type=range] {
+    width: 300px;
+}
+
+.bubble {
+    position: relative;
     top: 10px; left: 10px;
     z-index: 100;
-
     background: #D9E9F5;
     width: 350px;
     padding: 9px;
     border-radius: 5px;
     font-family: sans-serif;
+}
+
+.bubble + .bubble {
+    margin-top: 10px;
 }
 
 p {
