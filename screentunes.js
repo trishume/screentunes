@@ -109,17 +109,24 @@
   var incrTime = 0;
   var noteCount = 0;
   var song = songs.mary;
+  var play = true;
   function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    var note = song[noteCount];
-    if (t - incrTime > note[1]) {
-      incrTime += note[1];
+    if (!play) {return;}
+
+    var lastNote = song[noteCount];
+    if (t - incrTime > lastNote[1]) {
+      incrTime += lastNote[1];
       noteCount++;
+      if (noteCount == song.length) {
+        play = false;
+        return;
+      }
     }
 
-    note = song[noteCount];
-    var magic = note[0] * -.1 + 33 * 2;
+    var note = song[noteCount];
+    var magic = -note[0] * .1 + 56;
 
     //var magic = 5 + (Math.sin(t / 2000)+1)*7;
 
