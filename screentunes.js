@@ -74,17 +74,15 @@
   function play() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var pitch;
-    var rel = t % 3000;
-    if(rel < 1000) {
-      pitch = toneGen(0);
-    } else if(rel < 2000) {
-      pitch = toneGen(4);
-    } else if(rel < 3000) {
-      pitch = toneGen(7);
-    } else {
-      pitch = toneGen(0);
-    }
-    note(pitch);
+    $.getJSON("song.json", function(data){
+      var rel = t % data.duration;
+      $.each(data, function(i, field) {
+        if(rel > i) {
+          pitch = field;
+        }
+      });
+    });
+    note(toneGen(pitch));
   }
   
   function setMin() {
@@ -118,6 +116,7 @@
   }
 
   $(document).ready(function() {
+    $.ajaxSetup({ async: false });
     canvas = document.getElementById("main");
     ctx = canvas.getContext("2d");
     $(window).bind("resize", resize);
@@ -131,9 +130,6 @@
       stage++;
       $("#tune2").hide();
       baseFreq = (minimum + maximum) / 2.82842712475;                              // 2*sqrt(2)
-      if(2 * baseFreq > maximum) {
-        alert("Can't play music, range of tones too small");
-      }
     });
     resize();
     AnimationFrame.request(frame);
