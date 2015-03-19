@@ -4,8 +4,12 @@
   var start = null;
   var t = null;
   var factor = 10;
-  var song = [1,2,3,2,3,4,3,2,1,2,3,2,1,3,2,0,0];
-  var notes = [0,2093,2349,2637,2794,3136,3520,3729,3951,4186];
+  var tempo = 240  // bpm
+  var pitch = 2093 // 2093 Hz is C6 (does play a C6 on my monitor - JH)
+  var hold = 0.87  // 1 for full sostenuto
+  // notes are numbered by semitones, use .1 for a rest
+  var song =     [12,12,12,12,12,12,12,15,   8,10,12,13,13, 13,13,13,12,12,12,12,10,10,12,10,15,12,12,12,12,12,12,12,15,   8,10,12,13,13, 13,13,13,12,12,12,15,15,13,10, 8,.1]
+  var duration = [ 1, 1, 2, 1, 1, 2, 1, 1, 1.5,.5, 4, 1, 1,1.5,.5, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1.5,.5, 4, 1, 1,1.5,.5, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2]
 
   var AnimationFrame = (function() {
     var FPS = 16.6666666667; // 1000 / 60 = Frames Per Second
@@ -66,19 +70,23 @@
     AnimationFrame.request(frame);
   }
 
+  function note(i) {
+    return (i == .1 ? 0 : pitch*Math.pow(2,i/12));
+  }
+
   function playFreq(f) {
     var maxf = 60*screen.height/2; // methinks this is the frequency a 1px on 1px off cycle would produce in theory
     factor = maxf/f;
   }
 
   function playSong(n) {
-    playFreq(notes[song[n]]);
-    setTimeout(function() {rest((n+1) % song.length);},400);
+    playFreq(note(song[n]));
+    setTimeout(function() {rest((n));},duration[n]*hold*60000./tempo);
   }
 
   function rest(n) {
     playFreq(0);
-    setTimeout(function() {playSong(n);},40);
+    setTimeout(function() {playSong((n+1) % song.length);},duration[n]*(1.-hold)*60000./tempo);
   }
 
   $(document).ready(function() {
