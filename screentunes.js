@@ -82,7 +82,10 @@
         }
       });
     });
-    note(toneGen(pitch));
+    if (pitch != "s")
+    {
+      note(toneGen(pitch));
+    }
   }
   
   function setMin() {
