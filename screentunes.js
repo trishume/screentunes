@@ -7,22 +7,11 @@
   var maximum = 0;
   var stage = 0;
   var baseFreq = 0;                                                             // frequency, NOT bar height
-  var music = true;
 
   var AnimationFrame = (function() {
     var FPS = 16.6666666667; // 1000 / 60 = Frames Per Second
-    var RAF = window.requestAnimationFrame
-          || window.webkitRequestAnimationFrame
-          || window.mozRequestAnimationFrame
-          || window.msRequestAnimationFrame
-          || window.oRequestAnimationFrame
-          || function(a) { window.setTimeout(a, FPS); };
-    var CAF = window.cancelAnimationFrame
-          || window.webkitCancelAnimationFrame
-          || window.mozCancelAnimationFrame
-          || window.msCancelAnimationFrame
-          || window.oCancelAnimationFrame
-          || function(a) { window.clearTimeout(a); };
+    var RAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame || function(a) { window.setTimeout(a, FPS); };
+    var CAF = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame || window.oCancelAnimationFrame || function(a) { window.clearTimeout(a); };
     return {
       request: function(a) {
         RAF(a);
@@ -82,7 +71,7 @@
         }
       });
     });
-    if (pitch != "s")
+    if (pitch !== "s")
     {
       note(toneGen(pitch));
     }
@@ -101,12 +90,12 @@
   }
 
   function frame(timestamp) {
-    if (start === null && stage == 2) start = timestamp;
+    if (start === null && stage === 2) start = timestamp;
     t = timestamp - start;
     //render();
-    if(stage == 0) {
+    if(stage === 0) {
       setMin();
-    } else if (stage == 1) {
+    } else if (stage === 1) {
       setMax();
     } else {
       if($("#music").prop("checked")) {

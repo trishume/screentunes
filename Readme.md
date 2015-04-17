@@ -1,5 +1,7 @@
 # Screen Tunes
 
+[![Code Climate](https://codeclimate.com/github/GenaBitu/screentunes/badges/gpa.svg)](https://codeclimate.com/github/GenaBitu/screentunes)
+
 It turns out that some LCD monitors will emit a tone when patterns of repeating bars are displayed on the screen.
 This pattern varies based on the size of the bars. The goal of this project is to eventually be able to play some
 music through the screen using a web page.
