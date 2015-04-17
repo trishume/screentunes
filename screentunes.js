@@ -90,7 +90,9 @@
   }
 
   function frame(timestamp) {
-    if (start === null && stage === 2) start = timestamp;
+    if (start === null && stage === 2) {
+      start = timestamp;
+    }
     t = timestamp - start;
     //render();
     if(stage === 0) {
