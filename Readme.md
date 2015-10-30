@@ -11,7 +11,7 @@ the expansion and contraction of capacitors/inductors in the display as the scre
 amount of power than the white pixels. This theory suggests that varying the width of the bars would change the pitch,
 which indeed does happen.
 
-This is mainly intended as an experiment out of curiosity and geekery, it has no practical use.
+This is mainly intended as an experiment out of curiosity and geekery; it has no practical use.
 
 ## Technique
 
@@ -22,7 +22,7 @@ Displaying this pattern in a large browser window on some LCD monitors produces 
 
 #### Music
 
-Theoretically this could be used to play simple digital chiptune like songs. By animating to different bar widths the notes
+Theoretically this could be used to play simple digital chiptune-like songs. By animating to different bar widths the notes
 could be changed at around 60HZ. It might even be possible to play multiple notes at once by either partitioning the screen
 vertically into different chunks with different bar widths on each, or perhaps just alternating bar widths at 60HZ might be too
 fast for the ear to discern the alternation.
