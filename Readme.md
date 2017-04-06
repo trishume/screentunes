@@ -9,11 +9,11 @@ music through the screen using a web page.
 I found out about this effect from the Hacker News comments on a page that was about a completely different bar spacing effect
 but produced sound out of some monitors (including my external Samsung LCD).
 [Some commenters](https://news.ycombinator.com/item?id=8856930) produced theories including that this is caused by
-the expansion and contraction of capacitors in the display as the screen scans down and the black pixels take a different
+the expansion and contraction of capacitors/inductors in the display as the screen scans down and the black pixels take a different
 amount of power than the white pixels. This theory suggests that varying the width of the bars would change the pitch,
 which indeed does happen.
 
-This is mainly intended as an experiment out of curiosity and geekery, it has no practical use.
+This is mainly intended as an experiment out of curiosity and geekery; it has no practical use.
 
 ## Technique
 
@@ -27,7 +27,7 @@ The script can play some basic music, which it loads from the file song.json. In
 * duration - the overall duration of the song, after which the song will be repeated
 * individual notes with starting duration as the attribute and the note as the value
 
-notes are not named(due to inconsistent naming) but instead are represented as the number of semitones (half-steps) from the base note.
+Notes are not named(due to inconsistent naming) but instead are represented as the number of semitones (half-steps) from the base note.
 The script is calibrating the device in such a way, that it tries to fit the first octave (values 0 to 12) to the device tonal range.
 
 ## Calibration
