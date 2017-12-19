@@ -77,16 +77,10 @@
     }
   }
   
-  function setMin() {
+  function setExtrema(id, extrema) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    minimum = -49 * $("#min").val() / 99 + 51;
-    note(minimum);
-  }
-  
-  function setMax() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    maximum = -49 * $("#max").val() / 99 + 51;
-    note(maximum);
+    extrema = -49 * $(id).val() / 99 + 51;
+    note(extrema);
   }
 
   function frame(timestamp) {
@@ -94,11 +88,10 @@
       start = timestamp;
     }
     t = timestamp - start;
-    //render();
     if(stage === 0) {
-      setMin();
+	  setExtrema("#min", minimum);
     } else if (stage === 1) {
-      setMax();
+	  setExtrema("#max", maximum);
     } else {
       if($("#music").prop("checked")) {
         play();
