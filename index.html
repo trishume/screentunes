@@ -6,17 +6,42 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"> </script>
     <script type="text/javascript" src="screentunes.js"></script>
     <link rel="stylesheet" type="text/css" href="screentunes.css">
+    <title>Screen Tunes</title>
   </head>
   <body>
-    <div id="info">
+    <div id="tune1" class="bubble">
+      <h1>Tuning</h1>
+      <form>
+        <label for="min">Lowest Tone<label>
+        <input type="range" id="min" min="1" max="100">
+        <br>
+        <input type="button" id="is_set1" value="Next">
+      </form>
+    </div>
+    <div id="tune2" class="bubble">
+      <h1>Tuning</h1>
+      <form>
+        <label for="max">Highest Tone<label>
+        <input type="range" id="max" min="1" max="100">
+        <br>
+        <input type="button" id="is_set2" value="Next">
+      </form>
+    </div>
+    <div id="info" class="bubble">
       <h1>Screen Tunes</h1>
-      <strong>By <a href="http://thume.ca/">Tristan Hume</a></strong>
+      <strong>By <a href="http://thume.ca/">Tristan Hume</a> and <a href="https://github.com/GenaBitu">GenaBitu</a></strong>
       <p>
         On some LCD monitors this page will cause the screen to emit a
         tone that varies in pitch with the bar height. Maximize window for best results.
       </p>
       <p>
-        For more see the <a href="https://github.com/trishume/screentunes">Github Page</a>
+      <form>
+        <input type="checkbox" id="music" checked>
+        <label for="music">Play music!</label>
+      </form>
+      </p>
+      <p>
+        For more see the <a href="https://github.com/genabitu/screentunes">Github Page</a>
       </p>
       <p>
         <strong>Edit:</strong> I kinda managed to get this to play music but it doesn't work very well. If you're ambitious you can download and try out the "music" branch on Github.
