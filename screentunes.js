@@ -4,6 +4,18 @@
   var start = null;
   var t = null;
 
+$(document).keydown(function(keyEvent) {
+    if(keyEvent.keyCode == 72){
+        var x = document.getElementById("info");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        }
+        else {
+            x.style.display = "none";
+        }
+    }
+});
+
   var AnimationFrame = (function() {
     var FPS = 16.6666666667; // 1000 / 60 = Frames Per Second
     var RAF = window.requestAnimationFrame
